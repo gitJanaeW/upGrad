@@ -1,12 +1,12 @@
 const userSeeds = require('./user-seeds');
-const postseeds = require('./post-seeds');
+const projectSeeds = require('./project-seeds');
 
 const sequelize = require('..config/connection');
 
 const seedDb = async () => {
-    await sequelize.sync({force:true});
+    await sequelize.sync({ force: true });
     await userSeeds();
-    await postseeds();
+    await projectSeeds();
     process.exit(0);
 };
 

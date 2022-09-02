@@ -1,7 +1,7 @@
 // NOTE: Comment is beyond MVP, but I had extra time to make it
 
 const router = require('express').Router();
-const {User, Project, Comment} = require('../../model');
+const {User, Project, Comment} = require('../../models');
 
 // find all comments
 router.get('/', (req, res) => {

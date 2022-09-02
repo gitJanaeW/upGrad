@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const sequelize = require('sequelize'); // in case of a sequelize.literal
+const sequelize = require('../../config/connections'); // in case of a sequelize.literal
 const {User, Project} = require('../../models');
 const authLogin = require('../../utils/auth');
 
@@ -37,19 +37,7 @@ router.get('/', (req, res) => {
         // also include a list of user projects
         include: [
             {
-                model: Project,
-                // Trying something new: Sequelize documentation says you don't need to include attributes list
-                // attributes: [
-                //     'id',
-                //     'user_id',
-                //     'title',
-                //     'abstract',
-                //     'collab_status',
-                //     'drive_url',
-                //     'discipline',
-                //     'subject',
-                //     'created_at'
-                // ]
+                model: Project
             }
         ]
     })
@@ -84,19 +72,7 @@ router.get('/:id', (req, res) => {
         // also include a list of user projects
         include: [
             {
-                model: Project,
-                // Trying something new: Sequelize documentation says you don't need to include attributes list
-                // attributes: [
-                //     'id',
-                //     'user_id',
-                //     'title',
-                //     'abstract',
-                //     'collab_status',
-                //     'drive_url',
-                //     'discipline',
-                //     'subject',
-                //     'created_at'
-                // ]
+                model: Project
             }
         ]
     })
@@ -119,11 +95,13 @@ router.post('/', (req, res) => {
         password: req.body.password,
         institution: req.body.institution
     })
-    .then(newUserData => startNewSession(newUserData))
+    .then(newUserData => {
+        res.json(newUserData);
+    })
 });
 
 // enter your credentials (login)
-router.post('/login', authLogin, (req, res) => {
+router.post('/login', (req, res) => {
     // expected req.body:
     // {email: 'exname@gmail.com', password: 'exPassword'}
     User.findOne({
@@ -166,11 +144,10 @@ router.post('/logout', (req, res) => {
 });
 
 // change name/password (past MVP)
-router.put('/:id', authLogin, (req, res) => {
+router.put('/:id', (req, res) => {
     // expected req.body:
     // {name: 'Example Name', password: 'exPassword'}
     User.update(req.body, {
-        // indiviualHooks: true, (not sure this is necessary. look into if later if we use this)
         where: {
             id: req.params.id
         }
@@ -190,7 +167,7 @@ router.put('/:id', authLogin, (req, res) => {
 });
 
 // delete account (past MVP?)
-router.get('/:id', authLogin, (req, res) => {
+router.delete('/:id', (req, res) => {
     User.destroy({
         where: {
             id: req.params.id
@@ -201,6 +178,7 @@ router.get('/:id', authLogin, (req, res) => {
             res.status(404).json({message: 'No user found matching this id.'});
             return;
         }
+        res.json(deleteResults);
     })
     .catch(err => {
         console.log(err);

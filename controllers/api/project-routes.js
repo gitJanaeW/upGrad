@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const {User, Project} = require('../../model');
+const {User, Project} = require('../../models');
 const authLogin = require('../../utils/auth');
 
 // get all projects (shown from newest to oldest)
 router.get('/', (req, res) => {
     Project.findAll({
-        attributes: {
-            include: [['created_at']]
-        },
+        // attributes: {
+        //     include: [['created_at']]
+        // },
         // newest posts will show first based on id number
         order: [['id', 'ASC']]
     })
@@ -21,9 +21,9 @@ router.get('/', (req, res) => {
 // get a single project
 router.get('/:id', (req, res) => {
     Project.findOne({
-        attributes: {
-            include: [['created_at']]
-        },
+        // attributes: {
+        //     include: [['created_at']]
+        // },
         where: {
             id: req.params.id
         }
@@ -36,31 +36,31 @@ router.get('/:id', (req, res) => {
 });
 
 // create a project
-router.post('/', authLogin, (req, res) => {
+router.post('/', (req, res) => {
     Project.create({
         // these are all the data we'll need from input fields on frontend when the req is made
-        user_id: req.session.user_id,
-        title: req.body.title,
+        // user_id: req.session.user_id,
+        user_id: req.body.user_id,
+        project_name: req.body.project_name,
         abstract: req.body.abstract,
-        drive_url: req.body.drive_url,
-        discipline: req.body.discipline,
-        subject: req.body.subject,
         collab_status: req.body.collab_status,
-        finished: req.body.finished
+        project_url: req.body.project_url,
+        subject: req.body.subject,
+        ongoing_status: req.body.ongoing_status
     })
     .then(newProjectData => res.json(newProjectData))
     .catch(err => {
         console.log(err);
-        res.status.apply(500).json(err);
+        res.status(500).json(err);
     });
 });
 
 // update a project
-router.put('/:id', authLogin, (req, res) => {
+router.put('/:id', (req, res) => {
     Project.update({
         title: req.body.title,
         abstract: req.body.abstract,
-        drive_url: req.body.drive_url,
+        project_url: req.body.project_url,
         collab_status: req.body.collab_status
     })
     .then(changedProject => {
@@ -77,7 +77,7 @@ router.put('/:id', authLogin, (req, res) => {
 });
 
 // delete a project
-router.put('/:id', authLogin, (req, res) => {
+router.delete('/:id', (req, res) => {
     Project.destroy({
         where: {
             id: req.params.id
