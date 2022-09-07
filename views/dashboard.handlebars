@@ -1,6 +1,8 @@
 <p class="ml-2">
-    <a class="btn sticky-top btn-light" data-toggle="collapse" href="#filterMenu" role="button">+ Filter</a>
+    <a class="btn sticky-top btn-light" id="filter-btn" data-toggle="collapse" href="#filterMenu" role="button">+
+        Filter</a>
 </p>
+{{!-- Filter Options --}}
 <div class="collapse" id="filterMenu">
     <form id="filter-form"
         class="mb-3 d-flex flew-row flex-wrap justify-content-center border align-items-center rounded py-3 mx-2 bg-light">
@@ -10,7 +12,7 @@
         </div>
         <div class="d-flex flex-row">
             <div class="m-4">
-                <p>Finished</p>
+                <p>Ongoing Status</p>
                 <label for="finished-query-yes">Yes</label>
                 <input type="radio" id="finished-query-yes" name="finished-query">
                 <label for="finished-query-no">No</label>
@@ -30,9 +32,9 @@
         </div>
     </form>
 </div>
+{{!-- Research Card --}}
 <div class="container">
     {{#each allProjects}}
-
     <div class="row">
         <div class="col-2">
         </div>
@@ -44,23 +46,22 @@
                             <div class="card-body">
                                 <h5 class="card-title display-4">{{project_name}}</h5>
                                 <h5 class="card-subtitle mb-2 text-dark">{{user.name}}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{user.institution}}</h6>
-                                <h6><span>Contact </span><a href="mailto:{{user.email}}"
-                                        class="card-link">{{user.name}}!</a> </h6>
-                                <h4 class="card-text">{{abstract}}</h4>
+                                <h5 class="card-subtitle mb-2 text-muted">{{user.institution}}</h5>
+                                <h5 class="card-text">{{abstract}}</h5>
                                 <h6><span class="badge bg-secondary">Subject: {{subject}}</span><span
                                         class="badge bg-secondary">Ongoing
                                         Status: {{ongoing_status}}</span><span class="badge bg-secondary">Seeking
                                         Collaborators: {{collab_status}}</span></h6>
+                                <h6><span>Contact </span><a href="mailto:{{user.email}}"
+                                        class="card-link">{{user.name}}!</a> </h6>
                                 <h6><span>Check out my project here:</span><a href="#"
                                         class="card-link">{{project_url}}</a> </h6>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
         {{/each}}
+
         <script src="/js/filterProject.js"></script>

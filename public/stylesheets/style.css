@@ -143,10 +143,10 @@ body {
 
 }
 
+/* Page Styling */
 .intro {
     padding-top: 25px;
     padding-bottom: 25px;
-
 }
 
 .form-group {
@@ -197,4 +197,23 @@ body {
 
 #show-form-filter {
     padding-top: 10px;
+}
+
+#first-slide {
+    font-style: italic;
+    font-size: 30px;
+}
+
+#second-slide {
+    font-size: 50px;
+}
+
+.carousel-item.active {
+    display: block;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#filter-btn {
+    font-size: 25px;
 }

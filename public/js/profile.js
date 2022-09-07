@@ -37,20 +37,20 @@ async function createProjects(e) {
 }
 
 function revealResearch() {
-  var x = document.getElementById("show-filter");
-  if (x.style.display === "none") {
-    x.style.display = "block";
+  var researchFilterForm = document.getElementById("show-filter");
+  if (researchFilterForm.style.display === "none") {
+    researchFilterForm.style.display = "block";
   } else {
-    x.style.display = "none";
+    researchFilterForm.style.display = "none";
   }
 }
 
 function openProjectForm() {
-  var x = document.getElementById("show-form-filter");
-  if (x.style.display === "none") {
-    x.style.display = "block";
+  var projectFilterForm = document.getElementById("show-form-filter");
+  if (projectFilterForm.style.display === "none") {
+    projectFilterForm.style.display = "block";
   } else {
-    x.style.display = "none";
+    projectFilterForm.style.display = "none";
   }
 }
 
