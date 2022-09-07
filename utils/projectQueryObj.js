@@ -20,18 +20,18 @@ const getWhereObj = (queryObj) => {
     // if the 'open collab' radio button is checked...
     if (queryObj.collab_status) {
         if (queryObj.collab_status === 'true') {
-            queriesObj["collab_status"] = true;
+            queriesObj["collab_status"] = 'yes';
         } else {
-            queriesObj["collab_status"] = false;
+            queriesObj["collab_status"] = 'no';
         }
         queryCount++;
     }
     // if the 'open collab' radio button is checked...
     if (queryObj.ongoing_status) {
         if (queryObj.ongoing_status === 'true') {
-            queriesObj['ongoing_status'] = true;
+            queriesObj['ongoing_status'] = 'yes';
         } else {
-            queriesObj['ongoing_status'] = false;
+            queriesObj['ongoing_status'] = 'no';
         }
         queryCount++;
     }

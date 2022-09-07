@@ -1,4 +1,5 @@
 <div>
+    {{!-- Title Card --}}
     <div class="container">
         <div class="row page-title">
             <div class="col-sm">
@@ -10,25 +11,43 @@
             </div>
         </div>
     </div>
+    {{!-- Center Text --}}
     <div class="container">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <p class="display-3 text-center">Explore projects and connect with your peers</p>
+        <div id="carouselContent" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner text-center" role="listbox">
+                <div class="carousel-item active text-center justify-content-center" id="first-slide">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        <p class="justify-content-center">"Coming together is a beginning, staying together is
+                            progress, and
+                            working
+                            together is success." - Harrison Ford</p>
+                    </div>
+                </div>
+                <div class="carousel-item text-center p-4" id="second-slide">
+                    <div class="d-flex h-100 align-items-center justify-content-center">
+                        <p class="justify-content-center">Explore projects and connect with your peers!</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-3">
-            </div>
+            <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
         </div>
     </div>
-    <div class="container">
-        <div class="d-flex justify-content-center"> <button type="button" class="btn btn-light btn-lg rounded-pill"
-                id="homepage-signup">Sign up</button>
-        </div>
-        <br>
-        <div class="d-flex justify-content-center"> <button type="button"
-                class="btn btn-outline-dark btn-lg rounded-pill" id="homepage-login">Log
-                in</button>
-        </div>
+    {{!-- Sign up and Log In --}}
+    <div class="d-flex justify-content-center"> <button type="button" class="btn btn-light btn-lg rounded-pill"
+            id="homepage-signup">Sign up</button>
     </div>
+    <br>
+    <div class="d-flex justify-content-center"> <button type="button" class="btn btn-outline-dark btn-lg rounded-pill"
+            id="homepage-login">Log
+            in</button>
+    </div>
+</div>
 
-    <script src="/js/homepage.js"></script>
+<script src="/js/homepage.js"></script>

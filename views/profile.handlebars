@@ -1,14 +1,10 @@
 <div>
+    {{!-- Profile Header --}}
     <div class="container">
         <div class="row">
             <div class="col">
-
                 <div class="display-1">{{userProjects.0.user.name}}</div>
-
-
-                <h5 class="mt-0"></h5>
                 <h1 class="card-subtitle mb-2 text-dark">{{userProjects.0.user.institution}}</h1>
-                <button class="btn btn-light rounded-pill">Message</button>
                 <button class="btn btn-light rounded-pill" onclick="openProjectForm()" id="filter-btn">Add
                     Project</button>
                 <button class="btn btn-light rounded-pill" onclick="revealResearch()" id="filter-btn">View
@@ -39,15 +35,13 @@
                                                 <input type="search" id="project-url" name="subject-query">
                                             </h5>
                                         </div>
-
                                     </h5>
                                     <textarea rows="4" cols="50" name="comment" form="usrform" id="abstract-input"
                                         placeholder="Enter abstract here..."></textarea>
                                 </div>
                                 <div class="d-flex flex-row">
-
                                     <div class="m-4">
-                                        <p>Finished</p>
+                                        <p>Ongoing Status</p>
                                         <label for="finished-query-yes">Yes</label>
                                         <input type="radio" id="finished-query-yes" name="finished-query">
                                         <label for="finished-query-no">No</label>
@@ -67,7 +61,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -75,11 +68,8 @@
     </div>
 </div>
 </div>
-{{!--
-form for adding a project --}}
 
-
-{{!-- research cards --}}
+{{!-- User research cards --}}
 <div class="container" id="show-filter">
     <div class="row">
         <div class="col-2">
@@ -116,10 +106,10 @@ form for adding a project --}}
                                 <h6><span>Check out my project here:</span><a href="#" class="card-link">
                                         {{project_url}}
                                     </a> </h6>
-                                     <div class="m-4">
-                                        <button value={{id}} class="btn btn-outline-dark btn-lg rounded-pill delete "
-                                            >delete</button>
-                                    </div>
+                                <div class="m-4">
+                                    <button value={{id}}
+                                        class="btn btn-outline-dark btn-lg rounded-pill delete ">delete</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -128,7 +118,6 @@ form for adding a project --}}
             </div>
         </div>
         <div class="col-2">
-
         </div>
     </div>
 </div>
