@@ -20,7 +20,7 @@ router.get("/", authLogin, (req, res) => {
       const allProjects = allProjectsData.map((project) =>
         project.get({ plain: true })
       );
-
+      console.log("HERE I AM IN DASH")
       res.render("dashboard", { allProjects });
     })
     .catch((err) => {
@@ -58,38 +58,7 @@ router.get("/search", authLogin, (req, res) => {
     });
 });
 
-//display all projects user has
-router.get("/profile", authLogin, (req, res) => {
-  Project.findAll({
-    where: {
-      user_id: req.session.user_id,
-    },
-    order: [["id", "ASC"]],
-    include: [
-      {
-        model: User,
-        attributes: ["name", "institution", "email"],
-      },
-    ],
-  })
-    .then((allUserProjects) => {
-      // this is currently not going to be called because allUserProjects returns a '[]'
-      if (!allUserProjects) {
-        res.json({ message: "No results found for this search" });
-      }
-      // this formats the data Sequelize gives us in a readable format
-      const userProjects = allUserProjects.map((project) =>
-        project.get({ plain: true })
-      );
 
-      res.render("profile", { userProjects });
-    })
-    .catch((err) => {
-      console.log("ENTERING ERROR");
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
 
 router.get("/edit/:id", authLogin, (req, res) => {
   // get a project (based on project id)
