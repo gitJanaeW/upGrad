@@ -1,6 +1,7 @@
 const comment = document.querySelector('#comment');
 
-async function postComment () {
+async function postComment (e) {
+    e.preventDefault();
     // get the required values & fetch
     const body = comment.value;
     const urlArr = window.location.href.split('/');

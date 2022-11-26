@@ -20,18 +20,15 @@ router.get("/", authLogin, (req, res) => {
       const allProjects = allProjectsData.map((project) =>
         project.get({ plain: true })
       );
-      console.log("HERE I AM IN DASH")
       res.render("dashboard", { allProjects });
     })
     .catch((err) => {
-      console.log("ENTERING ERROR");
       console.log(err);
       res.status(500).json(err);
     });
 });
 
 router.get("/search", authLogin, (req, res) => {
-  console.log("ENTERING ROUTE");
   const where = getWhereObj(req.query);
   Project.findAll({
     where,
@@ -52,7 +49,6 @@ router.get("/search", authLogin, (req, res) => {
       res.render("dashboard", { allProjects });
     })
     .catch((err) => {
-      console.log("ENTERING ERROR");
       console.log(err);
       res.status(500).json(err);
     });

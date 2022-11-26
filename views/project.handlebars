@@ -11,7 +11,7 @@
                                 <h5 class="card-subtitle mb-2 text-dark">{{project.user.name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{project.user.institution}}</h6>
                                 <h6><span>Contact </span><a href="mailto:{{project.user.email}}"
-                                        class="card-link">{{project.user.name}}!</a> </h6>
+                                        class="card-link">{{project.user.name}}</a> </h6>
                                 <h4 class="card-text">{{project.abstract}}</h4>
                                 <h6><span class="badge bg-secondary">{{project.subject}}</span><span
                                         class="badge bg-secondary">Ongoing
@@ -24,7 +24,22 @@
                         
                         <div class="mb-3 border rounded py-3 px-3 mx-2 bg-light">
                             <h4>Comments</h4>
+                            {{#unless project.comments}}
+                            <p>Be the first to comment!</p>
+                            {{/unless}}
+                            <div class="d-flex mb-3">
+                                <textarea id='comment' class="card card-body d-flex" style="height: 60px"></textarea>
+                                <button id="create-comment-btn" class="button btn rounded border-secondary px-3 bg-white mx-1" style="height: 35px"><strong>✓</strong></button>
+                            </div>
                             
+                            {{!-- {{#if project.comments}} --}}
+                                {{#each project.comments}}
+                                <div class="border border-secondary rounded p-1 bg-white">
+                                    <p class="text-muted">{{user.name}}</p>
+                                    <p>{{body}}</p>
+                                </div>
+                                {{/each}}
+                            {{!-- {{/if}} --}}
                         </div>
                     </div>
                 </div>

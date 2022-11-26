@@ -1,16 +1,10 @@
 const router = require("express").Router();
 const sequelize = require("sequelize");
-const { User, Project } = require("../models");
+const { User, Project, Comment } = require("../models");
 const authLogin = require("../utils/auth");
 
 // display the login page
 router.get("/login", (req, res) => {
-  // if user is already logged in, redirect them to the homepage
-  // if (req.session.loggedIn) {
-  //     res.redirect('/');
-  //     return;
-  // }
-  // render login.handlebars
   res.render("login");
 });
 
@@ -25,12 +19,24 @@ router.get("/", (req, res) => {
 
 // display a specific project on its own page
 router.get("/project/:id", authLogin, (req, res) => {
-  console.log("HERE I AM IN HOME");
   Project.findOne({
+    where: {
+      id: req.params.id,
+    },
     include: [
       {
         model: User,
         attributes: ["name", "institution"],
+      },
+      {
+        model: Comment,
+        attributes: ["body"],
+        include: [
+          {
+            model: User,
+            attributes: ["name"]
+          }
+        ]
       },
     ],
   })
@@ -45,7 +51,6 @@ router.get("/project/:id", authLogin, (req, res) => {
       res.render("project", { project });
     })
     .catch((err) => {
-      console.log("ENTERING ERROR")
       console.log(err);
       res.status(500).json(err);
     });
@@ -78,7 +83,6 @@ router.get("/profile", authLogin, (req, res) => {
       res.render("profile", { userProjects });
     })
     .catch((err) => {
-      console.log("ENTERING ERROR");
       console.log(err);
       res.status(500).json(err);
     });
