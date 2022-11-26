@@ -2,6 +2,7 @@ const router = require("express").Router();
 const sequelize = require("sequelize");
 const { User, Project, Comment } = require("../models");
 const authLogin = require("../utils/auth");
+const findCommenter = require("../utils/findCommenter");
 
 // display the login page
 router.get("/login", (req, res) => {
@@ -30,11 +31,12 @@ router.get("/project/:id", authLogin, (req, res) => {
       },
       {
         model: Comment,
-        attributes: ["body"],
+        attributes: ["body", "user_id"],
         include: [
           {
             model: User,
-            attributes: ["name"]
+            attributes: ["name"],
+            // where: {id: findCommenter(req)}
           }
         ]
       },

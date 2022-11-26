@@ -7,7 +7,7 @@ async function postComment (e) {
     const urlArr = window.location.href.split('/');
     const project_id = urlArr[4];
     console.log("comment", body)
-    console.log("id", project_id)
+    console.log("project_id", project_id)
     if(body){
         await fetch(`/api/comments`, {
             method: 'POST',
@@ -19,7 +19,7 @@ async function postComment (e) {
         });
     }
     console.log("RESPONE: \n=========================================\n");
-    location.reload();
+    // location.reload();
 }
 
 document.querySelector('#create-comment-btn').addEventListener('click', postComment);
